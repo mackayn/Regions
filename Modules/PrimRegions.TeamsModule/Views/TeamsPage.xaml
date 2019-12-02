@@ -2,6 +2,10 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="PrismRegions.TeamModule.Views.TeamsPage"
+             xmlns:prism="clr-namespace:Prism.Navigation.Xaml;assembly=Prism.Forms"
+             xmlns:model="clr-namespace:PrismRegions.Framework.Model;assembly=PrismRegions.Framework"
+             xmlns:regions="clr-namespace:PrismRegions.Framework.Mvvm.Regions;assembly=PrismRegions.Framework"
+             x:Name="RootPage"
              Title="{Binding Title}">
     
     <Grid RowSpacing="1" ColumnSpacing="1">
@@ -9,6 +13,42 @@
             <ColumnDefinition Width="200" />
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
+
+        <!-- Team Selector -->
+        <Grid Grid.Column="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+
+            <CollectionView Grid.Row="0" Margin="5" ItemsSource="{Binding Teams}">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="model:NavigationItem">
+                        <Button 
+                            Text="{Binding KindName}"
+                            Command="{Binding Source={x:Reference RootPage}, Path=BindingContext.SelectTeamCommand}"
+                            CommandParameter="{Binding}"
+                            HorizontalOptions="Fill"
+                            HeightRequest="40">
+                        </Button>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+            <!-- Navigate back -->
+            <Button
+                Grid.Row="1"
+                Margin="5"
+                HorizontalOptions="Fill"
+                Command="{prism:GoBack Animated=False}"
+                Text="EXIT TO SHELL" />
+        </Grid>
+
+        <!-- region -->
+        <regions:RegionManager 
+            x:Name="ComponentRegion"
+            Grid.Column="1" />
+
     </Grid>
     
 </ContentPage>

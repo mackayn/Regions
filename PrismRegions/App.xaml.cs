@@ -32,9 +32,9 @@ namespace PrismRegions.Shell
         protected override void ConfigureModuleCatalog(IModuleCatalog moduleCatalog)
         {
             // Register modules here
-            moduleCatalog.AddModule<PrismRegions.CarModule.CarModule>();
-            moduleCatalog.AddModule<PrismRegions.DriverModule.DriverModule>();
-            moduleCatalog.AddModule<PrismRegions.TeamModule.TeamModule>();
+            moduleCatalog.AddModule<PrismRegions.CarModule.CarModule>(InitializationMode.OnDemand);
+            moduleCatalog.AddModule<PrismRegions.DriverModule.DriverModule>(InitializationMode.OnDemand);
+            moduleCatalog.AddModule<PrismRegions.TeamModule.TeamModule>(InitializationMode.OnDemand);
         }
 
         protected override void RegisterTypes(IContainerRegistry containerRegistry)

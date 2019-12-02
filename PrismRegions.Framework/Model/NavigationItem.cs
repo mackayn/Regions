@@ -1,9 +1,10 @@
-﻿using System.Windows.Input;
+﻿using System;
+using System.Windows.Input;
 using Prism.Mvvm;
 
 namespace PrismRegions.Framework.Model
 {
-    public class NavigationItem : BindableBase
+    public class NavigationItem : BindableBase, ICloneable
     {
         private string _imageName;
         public string ImageName
@@ -17,13 +18,6 @@ namespace PrismRegions.Framework.Model
         {
             get => _kindName;
             set => SetProperty(ref _kindName, value);
-        }
-
-        private bool _isEnabled;
-        public bool IsEnabled
-        {
-            get => _isEnabled;
-            set => SetProperty(ref _isEnabled, value);
         }
 
         private bool _isSelected;
@@ -46,5 +40,12 @@ namespace PrismRegions.Framework.Model
             get => _commandToExecute;
             set => SetProperty(ref _commandToExecute, value);
         }
+
+        public object Clone()
+        {
+            return (NavigationItem)this.MemberwiseClone();
+        }
+
+        object ICloneable.Clone() { return Clone(); }
     }
 }

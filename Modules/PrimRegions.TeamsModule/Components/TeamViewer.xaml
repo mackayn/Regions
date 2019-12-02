@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="PrismRegions.TeamModule.Components.TeamViewer">
+  <ContentView.Content>
+      <Grid>
+          <Frame 
+              Padding="5" 
+              Margin="5" 
+              BorderColor="DarkGray" 
+              CornerRadius="2">
+              <Grid BackgroundColor="White">
+                  <Grid.RowDefinitions>
+                      <RowDefinition Height="Auto" />
+                      <RowDefinition Height="Auto" />
+                      <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                  <Label Text="{Binding SelectedTeam.KindName}" FontSize="Large" FontAttributes="Bold" />
+                  <Image 
+                      Grid.Row="1"
+                      x:Name="ImageTeam"
+                      Source="{Binding SelectedTeam.ImageName}" />
+                  <StackLayout Grid.Row="2" Orientation="Horizontal" VerticalOptions="End">
+                      <Button 
+                          WidthRequest="120"
+                          Text="SEE DRIVERS"
+                          Command="{Binding NavigateToDriversCommand}" />
+                      <Button 
+                          WidthRequest="120"
+                          Text="SEE CARS"
+                          Command="{Binding NavigateToCarsCommand}" />
+                    </StackLayout>
+                </Grid>
+
+          </Frame>
+
+      </Grid>
+  </ContentView.Content>
+</ContentView>

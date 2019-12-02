@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="PrismRegions.DriverModule.Components.DriverViewer">
+    <Grid BackgroundColor="DarkGray">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50" />
+                <RowDefinition Height="30" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Label 
+              Grid.Row="0"
+              Text="Driver Viewer" 
+              TextColor="White"
+              FontSize="Large" FontAttributes="Bold" />
+            <Label 
+              Grid.Row="1"
+              TextColor="White"
+              Text="{Binding SelectedTeam.KindName}" 
+              FontSize="Medium" FontAttributes="Bold" />
+        </Grid>
+</ContentView>

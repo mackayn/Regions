@@ -9,6 +9,11 @@
             WidthRequest="{x:OnPlatform UWP=200, Default=180}"
             Text="GO TO REGION DEMO" 
             Command="{Binding NavigateToRegionsCommand}" />
+        <Label
+            HeightRequest="20"
+            VerticalOptions="Start"
+            HorizontalOptions="CenterAndExpand"
+            Text="{Binding Information}" />
     </StackLayout>
 
 </ContentPage>

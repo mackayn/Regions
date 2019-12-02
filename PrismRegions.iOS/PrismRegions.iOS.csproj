@@ -198,5 +198,17 @@
       <Name>PrismRegions.Shell</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\Ferrari.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\Mercedes.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\NoLogo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\Renault.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
 </Project>
