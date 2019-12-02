@@ -1,19 +1,13 @@
-﻿using Prism.Commands;
-using Prism.Mvvm;
-using Prism.Navigation;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using PrismRegions.Framework.Mvvm;
 
-namespace PrismRegions.ViewModels
+namespace PrismRegions.Shell.ViewModels
 {
-    public class MainPageViewModel : ViewModelBase
+    public class MainPageViewModel : BaseViewModel
     {
-        public MainPageViewModel(INavigationService navigationService)
-            : base(navigationService)
+        public MainPageViewModel(IBaseContainer baseContainer)
+            : base(baseContainer)
         {
-            Title = "Main Page";
+           
         }
     }
 }

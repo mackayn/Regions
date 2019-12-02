@@ -1,12 +1,12 @@
 ﻿using Prism;
 using Prism.Ioc;
-using PrismRegions.ViewModels;
-using PrismRegions.Views;
+using PrismRegions.Shell.ViewModels;
+using PrismRegions.Shell.Views;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
 [assembly: XamlCompilation(XamlCompilationOptions.Compile)]
-namespace PrismRegions
+namespace PrismRegions.Shell
 {
     public partial class App
     {
