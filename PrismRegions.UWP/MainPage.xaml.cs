@@ -9,7 +9,7 @@ namespace PrismRegions.UWP
         {
             this.InitializeComponent();
 
-            LoadApplication(new App(new UwpInitializer()));
+            LoadApplication(new Shell.App(new UwpInitializer()));
         }
     }
 

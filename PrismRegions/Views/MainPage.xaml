@@ -5,7 +5,10 @@
              Title="Main Page">
 
     <StackLayout HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
-        <Label Text="Welcome to Xamarin Forms and Prism!" />
+        <Button 
+            WidthRequest="{x:OnPlatform UWP=200, Default=180}"
+            Text="GO TO REGION DEMO" 
+            Command="{Binding NavigateToRegionsCommand}" />
     </StackLayout>
 
 </ContentPage>

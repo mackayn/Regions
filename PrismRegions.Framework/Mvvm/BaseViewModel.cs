@@ -1,6 +1,7 @@
 ﻿using Prism.Mvvm;
 using Prism.Navigation;
 using PrismRegions.Framework.Mvvm.Regions;
+using System.Threading.Tasks;
 
 namespace PrismRegions.Framework.Mvvm
 {
@@ -43,9 +44,15 @@ namespace PrismRegions.Framework.Mvvm
             Busy = false;
         }
 
+        public virtual Task OnNavigatedToAsync(INavigationParameters parameters)
+        {
+            Busy = false;
+            return Task.CompletedTask;
+        }
+
         public virtual void Destroy()
         {
-
+            Busy = false;
         }
 
         public IRegionService Regions => _baseContainer.RegionService;

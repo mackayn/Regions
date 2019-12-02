@@ -6,6 +6,15 @@
 	<Application.Resources>
 
 		<!-- Application resource dictionary -->
-
-	</Application.Resources>
+        <ResourceDictionary>
+            <Style TargetType="Button">
+                <Setter Property="HeightRequest" Value="50" />
+                <Setter Property="TextColor" Value="White" />
+                <Setter Property="BackgroundColor" Value="CornflowerBlue" />
+                <Setter Property="BorderColor" Value="DarkGray" />
+                <Setter Property="BorderWidth" Value="1" />
+                <Setter Property="CornerRadius" Value="2" />
+            </Style>
+        </ResourceDictionary>
+    </Application.Resources>
 </prism:PrismApplication>

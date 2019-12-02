@@ -1,5 +1,8 @@
 ﻿using Prism;
 using Prism.Ioc;
+using Prism.Modularity;
+using PrismRegions.Framework.Mvvm;
+using PrismRegions.Framework.Mvvm.Regions;
 using PrismRegions.Shell.ViewModels;
 using PrismRegions.Shell.Views;
 using Xamarin.Forms;
@@ -26,8 +29,18 @@ namespace PrismRegions.Shell
             await NavigationService.NavigateAsync("NavigationPage/MainPage");
         }
 
+        protected override void ConfigureModuleCatalog(IModuleCatalog moduleCatalog)
+        {
+            // Register modules here
+            moduleCatalog.AddModule<PrismRegions.CarModule.CarModule>();
+            moduleCatalog.AddModule<PrismRegions.DriverModule.DriverModule>();
+            moduleCatalog.AddModule<PrismRegions.TeamModule.TeamModule>();
+        }
+
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
         {
+            containerRegistry.RegisterSingleton<IRegionService, RegionService>();
+            containerRegistry.Register<IBaseContainer, BaseContainer>();
             containerRegistry.RegisterForNavigation<NavigationPage>();
             containerRegistry.RegisterForNavigation<MainPage, MainPageViewModel>();
         }

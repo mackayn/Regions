@@ -10,6 +10,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Modules\PrimRegions.TeamsModule\PrismRegions.TeamModule.csproj" />
+    <ProjectReference Include="..\Modules\PrismRegions.CarModule\PrismRegions.CarModule.csproj" />
+    <ProjectReference Include="..\Modules\PrismRegions.DriverModule\PrismRegions.DriverModule.csproj" />
     <ProjectReference Include="..\PrismRegions.Framework\PrismRegions.Framework.csproj" />
   </ItemGroup>
 

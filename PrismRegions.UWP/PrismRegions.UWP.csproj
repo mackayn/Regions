@@ -129,6 +129,10 @@
     <PackageReference Include="Prism.DryIoc.Forms" Version="7.2.0.1422" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\PrismRegions.Framework\PrismRegions.Framework.csproj">
+      <Project>{1cf2b99f-fe2f-47d3-abbc-9922160b7186}</Project>
+      <Name>PrismRegions.Framework</Name>
+    </ProjectReference>
     <ProjectReference Include="..\PrismRegions\PrismRegions.Shell.csproj">
       <Project>{F1127C23-056E-4333-BA7D-108B796C9B36}</Project>
       <Name>PrismRegions.Shell</Name>
