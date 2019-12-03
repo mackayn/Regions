@@ -25,15 +25,15 @@
                       Source="{Binding SelectedTeam.ImageName}" />
                   <StackLayout Grid.Row="2" Orientation="Horizontal" VerticalOptions="End">
                       <Button 
-                          WidthRequest="120"
+                          WidthRequest="150"
                           Text="SEE DRIVERS"
                           Command="{Binding NavigateToDriversCommand}" />
                       <Button 
-                          WidthRequest="120"
+                          WidthRequest="150"
                           Text="SEE CARS"
                           Command="{Binding NavigateToCarsCommand}" />
                       <Button 
-                          WidthRequest="120"
+                          WidthRequest="150"
                           Text="LATEST STANDINGS"
                           Command="{Binding NavigateToChampionship}" />
                     </StackLayout>

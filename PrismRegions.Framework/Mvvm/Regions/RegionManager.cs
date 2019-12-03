@@ -13,7 +13,7 @@ namespace PrismRegions.Framework.Mvvm.Regions
                 return;
             }
 
-            var currentView = GetCurrentRegion();
+            var currentView = GetCurrentView();
             ViewModelLocator.SetAutowirePartialView(currentView, null);
 
             // Cleanup the viewmodel
@@ -47,7 +47,7 @@ namespace PrismRegions.Framework.Mvvm.Regions
             });
         }
 
-        public View GetCurrentRegion()
+        public View GetCurrentView()
         {
             return Content;
         }

@@ -1,6 +1,6 @@
-﻿using System.Threading.Tasks;
-using Prism.Navigation;
+﻿using Prism.Navigation;
 using PrismRegions.Framework.Model;
+using System.Threading.Tasks;
 
 namespace PrismRegions.Framework.Mvvm.Regions
 {

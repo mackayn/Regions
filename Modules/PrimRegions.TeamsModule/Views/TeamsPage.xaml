@@ -6,7 +6,7 @@
              xmlns:model="clr-namespace:PrismRegions.Framework.Model;assembly=PrismRegions.Framework"
              xmlns:regions="clr-namespace:PrismRegions.Framework.Mvvm.Regions;assembly=PrismRegions.Framework"
              x:Name="RootPage"
-             Title="{Binding Title}">
+             Title="Formula1 Teams">
     
     <Grid RowSpacing="1" ColumnSpacing="1">
         <Grid.ColumnDefinitions>
@@ -38,7 +38,7 @@
             <!-- Navigate back -->
             <Button
                 Grid.Row="1"
-                Margin="5"
+                Margin="5,5,5,10"
                 HorizontalOptions="Fill"
                 Command="{prism:GoBack Animated=False}"
                 Text="EXIT TO SHELL" />
