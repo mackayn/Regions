@@ -1,14 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.Linq;
-using System.Reflection;
-using System.Threading.Tasks;
-using DryIoc;
+﻿using DryIoc;
 using Prism.Common;
 using Prism.Mvvm;
 using Prism.Navigation;
 using PrismRegions.Framework.Model;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using Xamarin.Forms;
 
 namespace PrismRegions.Framework.Mvvm.Regions
@@ -69,8 +67,7 @@ namespace PrismRegions.Framework.Mvvm.Regions
             regionManager.DestroyRegion();
             CurrentRegion = string.Empty;
 
-                var myView = GetView(toNavigate);
-            ViewModelLocator.SetAutowirePartialView(myView, GetCurrentPage());
+            var myView = GetView(toNavigate);
 
             await InvokeBeforeNavigatedEvents(myView, navigationArgs);
             regionManager.SetRegion(myView);
@@ -115,7 +112,7 @@ namespace PrismRegions.Framework.Mvvm.Regions
             return parameters;
         }
 
-        private Page GetCurrentPage()
+        private static Page GetCurrentPage()
         {
             try
             {
@@ -133,23 +130,17 @@ namespace PrismRegions.Framework.Mvvm.Regions
             {
                 throw new NotSupportedException("Only PartialView region type supported");
             }
-            return myView;
-        }
 
-        private static Type AlternateResolver(Type viewType)
-        {
-            var viewName = viewType.FullName;
-            if (string.IsNullOrEmpty(viewName))
+            if (region.AutoResolve)
             {
-                return null;
+                ViewModelLocator.SetAutowirePartialView(myView, GetCurrentPage());
+            }
+            else
+            {
+                myView.BindingContext = _container.Resolve(region.RegionType);
             }
 
-            viewName = viewName.Split('.').LastOrDefault();
-            var viewAssemblyName = viewType.GetTypeInfo().Assembly.FullName;
-            var module = viewType.Assembly.ManifestModule.Name.Replace(".dll", string.Empty);
-            var viewModelName = string.Format(CultureInfo.InvariantCulture, "{0}.ViewModels.{1}ViewModel, {2}", module, viewName, viewAssemblyName);
-            var type = Type.GetType(viewModelName);
-            return type;
+            return myView;
         }
     }
 }
