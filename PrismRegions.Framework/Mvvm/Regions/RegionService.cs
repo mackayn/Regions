@@ -77,23 +77,13 @@ namespace PrismRegions.Framework.Mvvm.Regions
 
         private static async Task InvokeBeforeNavigatedEvents(BindableObject viewToShow, INavigationParameters args)
         {
-            if (viewToShow.BindingContext is IInitialize nonAsyncInit)
-            {
-                nonAsyncInit.Initialize(args);
-            }
-
-            if (viewToShow.BindingContext is IInitializeAsync asyncInit)
-            {
-                await asyncInit.InitializeAsync(args);
-            }
+            PageUtilities.InvokeViewAndViewModelAction<IInitialize>(viewToShow, (view) => view.Initialize(args));
+            await PageUtilities.InvokeViewAndViewModelActionAsync<IInitializeAsync>(viewToShow, async (view) => await view.InitializeAsync(args));
         }
 
         private static void InvokeAfterNavigatedEvents(BindableObject viewToShow, INavigationParameters args)
         {
-            if (viewToShow.BindingContext is INavigatedAware onNavigated)
-            {
-                onNavigated.OnNavigatedTo(args);
-            }
+            PageUtilities.InvokeViewAndViewModelAction<INavigatedAware>(viewToShow, (view) => view.OnNavigatedTo(args));
         }
 
         private static INavigationParameters GetValidParameters(INavigationParameters parameters)
