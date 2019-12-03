@@ -69,21 +69,10 @@ namespace PrismRegions.Framework.Mvvm.Regions
 
             var myView = GetView(toNavigate);
 
-            await InvokeBeforeNavigatedEvents(myView, navigationArgs);
+            await PageUtilities.OnInitializedAsync(myView, navigationArgs);
             regionManager.SetRegion(myView);
-            InvokeAfterNavigatedEvents(myView, navigationArgs);
+            PageUtilities.OnNavigatedTo(myView, navigationArgs);
             CurrentRegion = toNavigate.RegionName;
-        }
-
-        private static async Task InvokeBeforeNavigatedEvents(BindableObject viewToShow, INavigationParameters args)
-        {
-            PageUtilities.InvokeViewAndViewModelAction<IInitialize>(viewToShow, (view) => view.Initialize(args));
-            await PageUtilities.InvokeViewAndViewModelActionAsync<IInitializeAsync>(viewToShow, async (view) => await view.InitializeAsync(args));
-        }
-
-        private static void InvokeAfterNavigatedEvents(BindableObject viewToShow, INavigationParameters args)
-        {
-            PageUtilities.InvokeViewAndViewModelAction<INavigatedAware>(viewToShow, (view) => view.OnNavigatedTo(args));
         }
 
         private static INavigationParameters GetValidParameters(INavigationParameters parameters)
