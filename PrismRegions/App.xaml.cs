@@ -1,6 +1,11 @@
-﻿using Prism;
+﻿using System;
+using System.Globalization;
+using System.Linq;
+using System.Reflection;
+using Prism;
 using Prism.Ioc;
 using Prism.Modularity;
+using Prism.Mvvm;
 using PrismRegions.Framework.Mvvm;
 using PrismRegions.Framework.Mvvm.Regions;
 using PrismRegions.Shell.ViewModels;
@@ -32,9 +37,9 @@ namespace PrismRegions.Shell
         protected override void ConfigureModuleCatalog(IModuleCatalog moduleCatalog)
         {
             // Register modules here
-            moduleCatalog.AddModule<PrismRegions.CarModule.CarModule>(InitializationMode.OnDemand);
-            moduleCatalog.AddModule<PrismRegions.DriverModule.DriverModule>(InitializationMode.OnDemand);
-            moduleCatalog.AddModule<PrismRegions.TeamModule.TeamModule>(InitializationMode.OnDemand);
+            moduleCatalog.AddModule<CarModule.CarModule>(InitializationMode.OnDemand);
+            moduleCatalog.AddModule<DriverModule.DriverModule>(InitializationMode.OnDemand);
+            moduleCatalog.AddModule<TeamModule.TeamModule>(InitializationMode.OnDemand);
         }
 
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
@@ -43,6 +48,31 @@ namespace PrismRegions.Shell
             containerRegistry.Register<IBaseContainer, BaseContainer>();
             containerRegistry.RegisterForNavigation<NavigationPage>();
             containerRegistry.RegisterForNavigation<MainPage, MainPageViewModel>();
+        }
+
+        protected override void ConfigureViewModelLocator()
+        {
+            base.ConfigureViewModelLocator();
+
+            // Override default viewmodel locator
+            ViewModelLocationProvider.SetDefaultViewTypeToViewModelTypeResolver(AlternateResolver);
+        }
+
+        private static Type AlternateResolver(Type viewType)
+        {
+            // Look for unknown navigation types, these will be pages with no view-models or ContentViews using Prism auto wire, don't use for regular navigation
+            var viewName = viewType.FullName;
+            if (string.IsNullOrEmpty(viewName))
+            {
+                return null;
+            }
+
+            // Strip out namespace
+            viewName = viewName.Split('.').LastOrDefault();
+            var viewAssemblyName = viewType.GetTypeInfo().Assembly.FullName;
+            var module = viewType.Assembly.ManifestModule.Name.Replace(".dll", "");
+            var viewModelName = string.Format(CultureInfo.InvariantCulture, $"{module}.ViewModels.{viewName}ViewModel, {viewAssemblyName}");
+            return Type.GetType(viewModelName);
         }
     }
 }

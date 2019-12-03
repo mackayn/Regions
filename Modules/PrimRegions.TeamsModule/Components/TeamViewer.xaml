@@ -32,6 +32,10 @@
                           WidthRequest="120"
                           Text="SEE CARS"
                           Command="{Binding NavigateToCarsCommand}" />
+                      <Button 
+                          WidthRequest="120"
+                          Text="LATEST STANDINGS"
+                          Command="{Binding NavigateToChampionship}" />
                     </StackLayout>
                 </Grid>
 

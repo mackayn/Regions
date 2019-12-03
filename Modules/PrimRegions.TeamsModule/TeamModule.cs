@@ -28,6 +28,7 @@ namespace PrismRegions.TeamModule
         public void RegisterTypes(IContainerRegistry containerRegistry)
         {
             containerRegistry.RegisterForNavigation<TeamsPage, TeamsPageViewModel>();
+            containerRegistry.RegisterForNavigation<ChampionshipPage, ChampionshipPageViewModel>();
         }
     }
 }

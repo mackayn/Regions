@@ -6,6 +6,7 @@ using System.Reflection;
 using System.Threading.Tasks;
 using DryIoc;
 using Prism.Common;
+using Prism.Mvvm;
 using Prism.Navigation;
 using PrismRegions.Framework.Model;
 using Xamarin.Forms;
@@ -68,7 +69,8 @@ namespace PrismRegions.Framework.Mvvm.Regions
             regionManager.DestroyRegion();
             CurrentRegion = string.Empty;
 
-            var myView = GetView(toNavigate);
+                var myView = GetView(toNavigate);
+            ViewModelLocator.SetAutowirePartialView(myView, GetCurrentPage());
 
             await InvokeBeforeNavigatedEvents(myView, navigationArgs);
             regionManager.SetRegion(myView);
@@ -131,11 +133,6 @@ namespace PrismRegions.Framework.Mvvm.Regions
             {
                 throw new NotSupportedException("Only PartialView region type supported");
             }
-
-            var viewModel = region.AutoResolve
-                ? _container.Resolve(AlternateResolver(myView.GetType()))
-                : _container.Resolve(region.RegionType);
-            myView.BindingContext = viewModel;
             return myView;
         }
 

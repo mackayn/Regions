@@ -14,6 +14,7 @@ namespace PrismRegions.TeamModule.Views
         {
             // release currently loaded region on page teardown
             ComponentRegion.DestroyRegion();
+            ComponentRegion = null;
         }
     }
 }

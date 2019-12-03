@@ -7,5 +7,7 @@ namespace PrismRegions.Framework.Mvvm.Regions
         void DestroyRegion();
 
         void SetRegion(View view);
+
+        View GetCurrentRegion();
     }
 }

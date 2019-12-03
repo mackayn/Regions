@@ -61,7 +61,10 @@ namespace PrismRegions.TeamModule.ViewModels
                 parameters.Add(KnownParameters.TeamParam, Teams.First());
             }
 
-            await OnNavigatedToAsync(parameters);
+            if (parameters.GetNavigationMode() == NavigationMode.New)
+            {
+                await OnNavigatedToAsync(parameters);
+            }
         }
 
         public override async Task OnNavigatedToAsync(INavigationParameters parameters)

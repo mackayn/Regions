@@ -1,4 +1,5 @@
-﻿using Prism.Navigation;
+﻿using Prism.Mvvm;
+using Prism.Navigation;
 using Xamarin.Forms;
 
 namespace PrismRegions.Framework.Mvvm.Regions
@@ -11,6 +12,9 @@ namespace PrismRegions.Framework.Mvvm.Regions
             {
                 return;
             }
+
+            var currentView = GetCurrentRegion();
+            ViewModelLocator.SetAutowirePartialView(currentView, null);
 
             // Cleanup the viewmodel
             if (Content.BindingContext is IDestructible vm)
@@ -41,6 +45,11 @@ namespace PrismRegions.Framework.Mvvm.Regions
             {
                 Content = view;
             });
+        }
+
+        public View GetCurrentRegion()
+        {
+            return Content;
         }
     }
 }
